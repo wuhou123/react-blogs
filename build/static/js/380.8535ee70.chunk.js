@@ -1,0 +1,1 @@
+(this["webpackJsonpmy-demo"]=this["webpackJsonpmy-demo"]||[]).push([[380],{1191:function(s,e){var a=Prism.util.clone(Prism.languages.typescript);Prism.languages.tsx=Prism.languages.extend("jsx",a)}}]);
