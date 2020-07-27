@@ -1,0 +1,255 @@
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+header,
+hgroup,
+nav,
+section,
+article,
+aside,
+footer,
+figure,
+figcaption,
+menu,
+button {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption,
+th {
+  text-align: left;
+}
+fieldset,
+img {
+  border: 0;
+}
+li {
+  list-style: none;
+}
+em,
+i {
+  font-style: normal;
+}
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  border-radius: 0;
+}
+a {
+  -webkit-touch-callout: none;
+  text-decoration: none;
+}
+*:focus {
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Noto Sans SC', 'Microsoft YaHei';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--body-bg-primary, #f0f2f5);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+img {
+  width: auto;
+  height: auto;
+}
+// reset-css end
+.ant-layout {
+  background: var(--body-bg-primary, #f0f2f5);
+}
+
+.logo {
+  display: inline-block;
+  width: 100px;
+  height: 64px;
+  img {
+    height: 60px;
+    pointer-events: none;
+    vertical-align: text-bottom;
+  }
+}
+
+// layout布局
+.layout-container {
+  .layout-header {
+    position: fixed;
+    width: 100%;
+    height: 64px;
+    background: #fff;
+    z-index: 1;
+    text-align: center;
+    .ant-menu {
+      display: inline-block;
+      width: calc(70% - 300px);
+      max-width: 780px;
+      height: 64px !important;
+      margin: 0 auto;
+      .ant-menu-item {
+        height: 64px;
+        line-height: 64px;
+        vertical-align: top;
+      }
+    }
+    .ant-input-search {
+      vertical-align: text-bottom;
+      .ant-input {
+        width: 65%\0;
+      }
+    }
+  }
+  .site-layout {
+    position: relative;
+    min-height: calc(100vh - 200px);
+    padding: 10px 5px;
+    background: var(--layout-bg-primary, #fff);
+  }
+  .layout-content {
+    width: 70%;
+    max-width: 1200px;
+    margin: 90px auto 30px;
+  }
+  .ant-layout-footer {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .ant-list-item {
+    .ant-list-item-main {
+      min-width: 250px;
+    }
+    .ant-list-item-extra {
+      width: 165px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .ant-layout-sider {
+    margin-left: 25px;
+    background: var(--body-bg-primary, #f0f2f5);
+    .ad-a {
+      .ant-card {
+        position: sticky;
+        top: 80px;
+        top: 0\0;
+        z-index: 1;
+        z-index: 0\0;
+      }
+    }
+  }
+  .empty-text {
+    display: none;
+  }
+  // ie上评论样式
+  .ant-comment-content-detail {
+    .ant-col-24 {
+      flex: 0 0 100%\0;
+    }
+  }
+  // ie markdown样式
+  .wmde-markdown {
+    max-width: 750px;
+  }
+}
+// loading
+.loading-container {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 30%;
+}
+
+// 手机端
+@media screen and (max-width: 1055px) {
+  .layout-container {
+    .layout-header {
+      padding: 0;
+      text-align: center;
+      .ant-menu {
+        width: 100%;
+        padding: 0 10px;
+      }
+      .logo {
+        display: none;
+      }
+    }
+    .layout-content {
+      width: 100%;
+    }
+    .ant-layout-sider {
+      display: none;
+    }
+    .ant-input-search {
+      display: none;
+    }
+    .artical-list {
+      .ant-list-item-action {
+        li {
+          &:nth-of-type(2) {
+            display: none;
+          }
+        }
+      }
+    }
+    .user-only-pc {
+      display: none;
+    }
+  }
+}
