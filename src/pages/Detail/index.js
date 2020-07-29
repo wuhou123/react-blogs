@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef,useCallback } from 'react'
 import {
   Form,
   Input,
@@ -42,16 +42,16 @@ const Detail = (props) => {
 
   useEffect(() => {
     getDetail()
-  }, [])
+  }, [getDetail])
 
-  const getDetail = async () => {
+  const getDetail = useCallback(async () => {
     try {
       let res = await api.getDetail({ id: id })
       if (res.code === 200) {
         setDetailData(res.data)
       }
     } catch (e) {}
-  }
+  })
 
   const layout = {
     labelCol: { span: 4 },
@@ -203,7 +203,7 @@ const Detail = (props) => {
             <UnorderedListOutlined />
             评论列表
           </div>
-          {article_comment.data &&
+          {article_comment.data&&article_comment.data.length>0?
             article_comment.data.map((item, index) => {
               const { nickname, content, reply, created_at } = item
               return (
@@ -255,7 +255,7 @@ const Detail = (props) => {
                     })}
                 </Comment>
               )
-            })}
+            }):<div>暂无评论</div>}
         </div>
         <Modal
           title="回复"
