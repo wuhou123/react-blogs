@@ -194,7 +194,7 @@ const Layouts = withRouter((props) => {
                         <img
                           alt="标题图片"
                           // src={`https://cdn.seovx.com/?mom=302&key=${index}`}
-                          src={`https://lorempixel.com/200/200/?key=${index}`}
+                          src={`https://api.ixiaowai.cn/api/api.php?key=${index}`}
                         />
                       }
                     >
