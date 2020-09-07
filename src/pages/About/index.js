@@ -26,8 +26,7 @@ const About = (props) => {
           <p>第三版</p>
           <p>Vue+Koa+Mysql+Nginx</p>
           <p>在学生机上搭建完毕，</p>
-          <p>服务器已到极限，</p>
-          <p>只有每天定时清内存</p>
+          <p>服务器已到极限!</p>
         </Timeline.Item>
         <Timeline.Item label="2018-04-15">
           <p>第二版</p>

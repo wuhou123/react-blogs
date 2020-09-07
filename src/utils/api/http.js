@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-axios.defaults.baseURL = isProduction ? '/' : '/api/'
+const baseURL = isProduction ? '/' : '/api/'
 // 添加请求拦截器
 axios.interceptors.request.use(
   (config) => {
@@ -29,6 +29,7 @@ axios.interceptors.response.use(
 
 export default {
   get(url, params = {}) {
+    url = url.includes('http')?url:baseURL + url
     return new Promise((resolve, reject) => {
       axios
         .get(url, { params })
@@ -41,6 +42,7 @@ export default {
     })
   },
   post(url, params) {
+    url = url.includes('http')?url:baseURL + url
     return new Promise((resolve, reject) => {
       axios
         .post(url, qs.stringify(params))

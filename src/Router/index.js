@@ -15,6 +15,7 @@ import Loadable from '@/utils/loadable'
 const Detail = Loadable(() => import('@/pages/Detail'))
 const About = Loadable(() => import('@/pages/About'))
 const Test = Loadable(() => import('@/pages/Test'))
+const Movie = Loadable(() => import('@/pages/Movie'))
 
 export const navs = [
   // {
@@ -36,6 +37,11 @@ export const navs = [
     path: '/about',
     name: '关于',
     component: About,
+  },
+  {
+    path: '/movie',
+    name: 'SO计划',
+    component: Movie,
   },
 ]
 

@@ -157,8 +157,8 @@ img {
     background: var(--layout-bg-primary, #fff);
   }
   .layout-content {
-    width: 70%;
-    max-width: 1200px;
+    width: 80%;
+    max-width: 1400px;
     margin: 90px auto 30px;
   }
   .ant-layout-footer {
@@ -181,7 +181,11 @@ img {
       }
     }
   }
-  .ant-layout-sider {
+  .aside-left{
+    margin-right:25px;
+    background: var(--body-bg-primary, #f0f2f5);
+  }
+  .aside-right {
     margin-left: 25px;
     background: var(--body-bg-primary, #f0f2f5);
     .ad-a {
@@ -205,7 +209,7 @@ img {
   }
   // ie markdown样式
   .wmde-markdown {
-    max-width: 750px;
+    max-width: 750px\0;
   }
 }
 // loading
@@ -233,7 +237,7 @@ img {
     .layout-content {
       width: 100%;
     }
-    .ant-layout-sider {
+    .aside-right,.aside-left {
       display: none;
     }
     .ant-input-search {
