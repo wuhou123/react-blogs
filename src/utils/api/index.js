@@ -18,7 +18,10 @@ export default {
   getAds(params) {
     return http.get('/api/v1/advertise', params)
   },
-  movieSeach(params){
-    return http.get('https://api.eyunzhu.com/api/vatfs/resource_site_collect/search',params)
-  }
+  movieSeach(params) {
+    return http.get(
+      'https://api.eyunzhu.com/api/vatfs/resource_site_collect/search',
+      params
+    )
+  },
 }
