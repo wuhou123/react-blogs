@@ -40,10 +40,6 @@ const Detail = (props) => {
   console.log(props)
   const id = props.location.search ? props.location.search.split('=')[1] : ''
 
-  useEffect(() => {
-    getDetail()
-  }, [getDetail])
-
   const getDetail = useCallback(async () => {
     try {
       let res = await api.getDetail({ id: id })
@@ -52,6 +48,10 @@ const Detail = (props) => {
       }
     } catch (e) {}
   })
+  
+  useEffect(() => {
+    getDetail()
+  }, [getDetail])
 
   const layout = {
     labelCol: { span: 4 },

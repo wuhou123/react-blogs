@@ -20,5 +20,8 @@ export default {
   },
   movieSeach(params){
     return http.get('https://api.eyunzhu.com/api/vatfs/resource_site_collect/search',params)
+  },
+  getDetail(params){
+    return http.get('https://api.eyunzhu.com/api/vatfs/resource_site_collect/getVDetail',params)
   }
 }
