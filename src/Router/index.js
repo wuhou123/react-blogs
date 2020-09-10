@@ -38,11 +38,11 @@ export const navs = [
     name: '关于',
     component: About,
   },
-  {
-    path: '/movie',
-    name: 'SO计划',
-    component: Movie,
-  },
+  // {
+  //   path: '/movie',
+  //   name: 'SO计划',
+  //   component: Movie,
+  // },
 ]
 
 export default function () {
@@ -54,6 +54,7 @@ export default function () {
           <ConfigProvider locale={zhCN}>
             <Layouts>
               <CacheRoute exact path="/" component={Home} when="always" />
+              <CacheRoute exact path="/movie" component={Movie} when="always" />
               <Switch>
                 {navs.map((item) => (
                   <Route {...item} key={item.path} exact />
