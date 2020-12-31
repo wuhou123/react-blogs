@@ -8,7 +8,7 @@ import {
   CompassOutlined,
   VideoCameraOutlined,
   HomeOutlined,
-  VideoCameraAddOutlined
+  VideoCameraAddOutlined,
 } from '@ant-design/icons'
 import styles from './index.module.less'
 import api from '@/utils/api'
@@ -159,17 +159,21 @@ const Layouts = withRouter((props) => {
         </Header>
 
         <Layout className="layout-content">
-        <Sider theme="light" className="aside-left" width={120}>
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          style={{ height: '100%', borderRight: 0 }}
-        >
-          <Menu.Item key="1" icon={<HomeOutlined />}><Link to='/'>HOME</Link></Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraAddOutlined />}><Link to='/movie'>SO计划</Link></Menu.Item>
-        </Menu>
-        </Sider>
+          <Sider theme="light" className="aside-left" width={120}>
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['1']}
+              defaultOpenKeys={['sub1']}
+              style={{ height: '100%', borderRight: 0 }}
+            >
+              <Menu.Item key="1" icon={<HomeOutlined />}>
+                <Link to="/">HOME</Link>
+              </Menu.Item>
+              <Menu.Item key="2" icon={<VideoCameraAddOutlined />}>
+                <Link to="/movie">SO计划</Link>
+              </Menu.Item>
+            </Menu>
+          </Sider>
           <Content className="site-layout">
             <div className={styles['container']}>{props.children}</div>
           </Content>
@@ -185,7 +189,7 @@ const Layouts = withRouter((props) => {
                     href={link}
                     key={index}
                   >
-                    <Card
+                    {/* <Card
                       hoverable
                       style={{
                         marginBottom: 20,
@@ -199,7 +203,7 @@ const Layouts = withRouter((props) => {
                       }
                     >
                       <Meta title={title} />
-                    </Card>
+                    </Card> */}
                   </a>
                 )
               })}
