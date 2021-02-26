@@ -1,0 +1,68 @@
+.recomment-config {
+  width: 723px;
+  height: 100%;
+  position: relative;
+  .gifTop {
+    width: 972px;
+    position: absolute;
+    bottom: -156px;
+    right: -330px;
+  }
+  .title {
+    width: 341px;
+    margin: 60px 0 0 107px;
+  }
+  .content {
+    width: 655px;
+    height: 527px;
+    margin: 20px 0 0 142px;
+    position: relative;
+    z-index: 9;
+    .ul {
+      min-height: 370px;
+      li {
+        width: 655px;
+        height: 74px;
+        background: url(https://img.csgo.com.cn/csgo/59/26/5926bba4bb0b716919fd96473097f0071607427794.png)
+          no-repeat;
+        background-size: cover;
+        padding: 0 38px;
+        transition: transform 0.5s;
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+          background-position-y: -74px;
+          transform: translate(20px, -2px);
+          a {
+            color: #000;
+          }
+        }
+        a {
+          display: inline-block;
+          height: 74px;
+          color: #fff;
+          transition: color 0.3s;
+        }
+        .label,
+        .date {
+          display: inline-block;
+          height: 74px;
+          line-height: 80px;
+          vertical-align: middle;
+          font-size: 18px;
+        }
+        .label {
+          width: 500px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .date {
+          width: 70px;
+          margin-left: 15px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

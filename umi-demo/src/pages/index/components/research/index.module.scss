@@ -1,0 +1,158 @@
+.recomment-config {
+  width: 723px;
+  height: 100%;
+  position: relative;
+  .gifTop {
+    width: 964px;
+    position: absolute;
+    top: -122px;
+    right: -407px;
+  }
+  .title {
+    width: 341px;
+    margin: 60px 0 0 107px;
+  }
+  .content {
+    width: 687px;
+    height: 527px;
+    margin: 54px 0 0 132px;
+    position: relative;
+    z-index: 9;
+    .date-tab {
+      width: 508px;
+      height: 45px;
+      margin: 15px 0 8px 46px;
+      text-align: center;
+      li {
+        display: inline-block;
+        width: 153px;
+        height: 45px;
+        line-height: 45px;
+        background: url(https://img.csgo.com.cn/csgo/b0/08/b0086259a4e2e17073e22f514e38c8261608106232.png)
+          no-repeat -153px 0;
+        background-size: 200%;
+        text-align: center;
+        color: #03ffb6;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        &:not(:first-of-type) {
+          margin-left: 3px;
+        }
+        &.active {
+          color: #000000;
+          background-position-x: 0;
+        }
+      }
+    }
+    .name-tab {
+      height: 71px;
+      margin-left: 46px;
+      li {
+        display: inline-block;
+        width: 245px;
+        height: 71px;
+        line-height: 71px;
+        background: url(https://img.csgo.com.cn/csgo/b1/ee/b1eecf75ebc4acd08902d59e95ef1efe1608290318.png)
+          no-repeat -5px -86px;
+        background-size: 206.5%;
+        text-align: center;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.5s;
+        &:not(:first-of-type) {
+          margin-left: 23px;
+        }
+        &:nth-of-type(2) {
+          background-position: -259px -5px;
+          &.active,
+          &:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+            background-position: -4.5px -167px;
+          }
+        }
+        &.active,
+        &:hover {
+          opacity: 1;
+          transform: translateY(-5px);
+          background-position: -5px -5px;
+        }
+      }
+    }
+    .table {
+      width: 508px;
+      height: 312px;
+      background: url(https://img.csgo.com.cn/csgo/b6/cd/b6cdb041325bde057f1b35216646a85f1607670102.png)
+        no-repeat;
+      background-size: cover;
+      padding: 0 0px 0 18px;
+      margin: 5px 0 0 46px;
+      &.table0 {
+        li {
+          span {
+            width: 50% !important;
+            &:nth-of-type(2) {
+              width: 50% !important;
+            }
+          }
+        }
+      }
+      .hd {
+        height: 45px;
+        width: 475px;
+        text-align: center;
+        span {
+          width: 25%;
+          display: inline-block;
+          color: #fff;
+          font-size: 18px;
+          line-height: 48px;
+          &:nth-of-type(2) {
+            width: 75%;
+          }
+        }
+      }
+      .table-content {
+        height: 260px;
+        li {
+          width: 475px;
+          height: 46px;
+          line-height: 46px;
+          margin-right: 2px;
+          &:nth-of-type(even) {
+            height: 39px;
+            line-height: 39px;
+            background: url(https://img.csgo.com.cn/csgo/c2/52/c252bc7ec2c7885974c80ce7b0bf464e1607514280.png)
+              no-repeat;
+            background-size: cover;
+            span {
+              line-height: 39px;
+            }
+          }
+          span {
+            width: 25%;
+            display: inline-block;
+            color: #fff;
+            font-size: 18px;
+            line-height: 46px;
+            text-align: center;
+            &:nth-of-type(2) {
+              width: 75%;
+              color: #00e7cb;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.thumbVertical {
+  width: 6px;
+  background: linear-gradient(0deg, #9569ff, #00ccf3);
+  position: relative;
+  left: -3px;
+  cursor: pointer;
+}

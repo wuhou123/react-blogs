@@ -1,0 +1,50 @@
+.recomment-config {
+  height: 100%;
+  .title {
+    width: 341px;
+    margin: 60px 0 0 89px;
+  }
+  .content {
+    width: 687px;
+    height: 527px;
+    margin: -30px 0 0 142px;
+    background: url(https://img.csgo.com.cn/csgo/ce/a7/cea73015a10423db0105b8e402ecd6641607425245.png)
+      no-repeat;
+    background-size: cover;
+    padding: 142px 28px 0 20px;
+    .dota2,
+    .csgo {
+      height: 114px;
+      li {
+        margin: 0 8px;
+        text-align: center;
+        position: relative;
+        img {
+          display: inline-block;
+          width: 114px;
+          height: 114px;
+          border: 2px solid #000000;
+        }
+        p {
+          display: inline-block;
+          width: 112px;
+          height: 30px;
+          line-height: 30px;
+          position: absolute;
+          bottom: 2px;
+          left: 8px;
+          background: rgba(#000, 0.6);
+          font-size: 14px;
+          color: #fff;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          padding: 0 5px;
+        }
+      }
+    }
+    .csgo {
+      margin-top: 122px;
+    }
+  }
+}

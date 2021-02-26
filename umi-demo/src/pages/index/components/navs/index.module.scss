@@ -1,0 +1,99 @@
+.nav-main {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-width: 1200px;
+  height: 76px;
+  z-index: 999;
+  background: #7f7fd5;
+  background: -webkit-linear-gradient(
+    to right,
+    rgb(127, 127, 213),
+    rgb(134, 168, 231),
+    rgb(145, 234, 228)
+  );
+  background: linear-gradient(
+    to right,
+    rgb(127, 127, 213),
+    rgb(134, 168, 231),
+    rgb(145, 234, 228)
+  );
+  border-bottom: 2px solid #000000;
+  .mini-logo {
+    width: 123px;
+    margin-left: 16px;
+    position: absolute;
+  }
+  .nav-ul {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 170px;
+    li {
+      display: inline-block;
+      height: 76px;
+      line-height: 76px;
+      color: #fff;
+      font-size: 16px;
+      vertical-align: middle;
+      padding: 0 35px 0 25px;
+      cursor: pointer;
+      &:hover {
+        color: #3be8ff;
+      }
+    }
+  }
+  .share {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    color: #fff;
+    margin-left: 50px;
+    p {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    a {
+      width: 28px;
+      height: 30px;
+      display: inline-block;
+      vertical-align: middle;
+      background: url(https://img.csgo.com.cn/csgo/84/90/84908c3b686ffa582c9965ab3c5c6ed61607652195.png)
+        no-repeat;
+      background-size: 400%;
+      transition: transform 0.5s;
+      &:first-of-type {
+        background-position: -5px -5px;
+      }
+      &:nth-of-type(2) {
+        background-position: -5px -45px;
+        &:hover {
+          &:after {
+            content: '';
+            @include size(173px, 189px);
+            background: url(https://img.csgo.com.cn/csgo/49/e1/49e1df229ea7dc2b2832a7b0f967cdf61608014071.png)
+              no-repeat;
+            background-size: cover;
+            position: absolute;
+            left: -66px;
+            top: 38px;
+            pointer-events: none;
+          }
+        }
+      }
+      &:nth-of-type(3) {
+        background-position: -43px -5px;
+      }
+      &:nth-of-type(4) {
+        background-position: -81px -5px;
+      }
+      &:not(:first-of-type) {
+        margin-left: 22px;
+      }
+      &:hover {
+        transform: translateY(-4px);
+      }
+    }
+  }
+}

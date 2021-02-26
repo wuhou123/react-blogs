@@ -1,0 +1,61 @@
+.recomment-config {
+  width: 723px;
+  height: 100%;
+  position: relative;
+  .gifTop {
+    width: 1024px;
+    position: absolute;
+    bottom: -109px;
+    right: -215px;
+  }
+  .title {
+    width: 341px;
+    margin: 60px 0 0 82px;
+  }
+  .content {
+    width: 687px;
+    height: 527px;
+    margin: 20px 0 0 76px;
+    .big-img {
+      position: relative;
+      width: 986px;
+      z-index: 9;
+      margin-top: -160px;
+      margin-left: -128px;
+      cursor: pointer;
+      &:hover {
+        filter: drop-shadow(5px 5px 10px black);
+      }
+    }
+  }
+}
+
+.pointer {
+  width: 51px;
+  position: absolute;
+  left: 634px;
+  top: 530px;
+  animation: moveToTop 1.2s ease-in-out infinite;
+  z-index: 99;
+  cursor: pointer;
+}
+.tip {
+  position: absolute;
+  left: 615px;
+  top: 588px;
+  cursor: pointer;
+  z-index: 9;
+  //   font-size: 18px;
+  //   font-weight: bold;
+  //   color: #fff;
+}
+
+@keyframes moveToTop {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-25px, -25px);
+    opacity: 1;
+  }
+}

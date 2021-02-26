@@ -1,0 +1,46 @@
+.recomment-config {
+  width: 600px;
+  height: 100%;
+  position: relative;
+  padding: 50px 0 0 60px;
+  .title {
+    h2 {
+      font-size: 24px;
+    }
+  }
+  .content {
+    width: 600px;
+    height: 600px;
+    position: relative;
+    background: #fff;
+    li {
+      width: 100%;
+      text-align: left;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      .name {
+        width: 550px;
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        vertical-align: middle;
+      }
+      .date {
+        width: 50px;
+        display: inline-block;
+        color: #999;
+        font-size: 13px;
+        text-align: center;
+      }
+    }
+  }
+}
+.thumbVertical {
+  width: 6px;
+  background: linear-gradient(0deg, #9569ff, #00ccf3);
+  position: relative;
+  left: -3px;
+  cursor: pointer;
+}

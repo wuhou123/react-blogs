@@ -1,0 +1,40 @@
+.recomment-config {
+  height: 100%;
+  .title {
+    margin: 60px 0 0 107px;
+  }
+  .content {
+    height: 527px;
+    margin: 54px 0 0 142px;
+    position: relative;
+    img {
+      width: 930px;
+    }
+    .pvp-btn {
+      display: inline-block;
+      width: 263px;
+      height: 70px;
+      position: absolute;
+      left: 67px;
+      top: 173px;
+    }
+    .pointer {
+      width: 51px;
+      height: 51px;
+      position: absolute;
+      left: 304px;
+      top: 246px;
+      animation: moveToTop 1.2s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes moveToTop {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-20px, -20px);
+    opacity: 1;
+  }
+}

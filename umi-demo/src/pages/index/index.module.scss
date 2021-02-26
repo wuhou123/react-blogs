@@ -1,0 +1,203 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  .banner-con {
+    transition: opacity 0.2s ease-out;
+  }
+  .right-page {
+    display: flex;
+    width: 5484px;
+    height: calc(100vh - 76px);
+    position: relative;
+    top: 0;
+    left: 1530px;
+    &.changebg {
+      &::after {
+        opacity: 0;
+      }
+    }
+    &::after {
+      content: '';
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      opacity: 1;
+      background: url(https://img.csgo.com.cn/csgo/2f/54/2f5473b4a5fab2a9fecfbc4d7cd2bf7c1608101026.jpg)
+        repeat;
+      z-index: -1;
+      transition: opacity 0.5s ease-out;
+    }
+  }
+  .left-div {
+    width: 41px;
+    height: 100%;
+    background: url(https://img.csgo.com.cn/csgo/ff/3b/ff3bcfade030f1bb768669e8f167c40e1607591605.png)
+      no-repeat center;
+    background-size: cover;
+    position: absolute;
+    left: -40px;
+    top: 0;
+    transition: all 0.3s cubic-bezier(0.22, 0.58, 0.12, 0.98);
+  }
+  .right-div {
+    width: 62px;
+    height: 100%;
+    background: url(https://img.csgo.com.cn/csgo/05/b3/05b3c06aa03046be1cf39825bc5389ea1607668869.png)
+      no-repeat center;
+    background-size: cover;
+    position: fixed;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.22, 0.58, 0.12, 0.98);
+    .mini-allows {
+      display: block;
+      width: 29px;
+      height: 26px;
+      background: url(https://img.csgo.com.cn/csgo/76/c4/76c438b88343a3cf5c323532c48f06981607668928.png)
+        no-repeat;
+      background-size: cover;
+      margin: 298px 0 0 15px;
+      animation: moveLeft 1.3s ease-in-out infinite;
+    }
+  }
+  .arrows {
+    width: 153px;
+    height: 101px;
+    position: absolute;
+    background: url(https://img.csgo.com.cn/csgo/24/ce/24ce0bc1d73827f834bf4ce0d3ca21641607588101.png)
+      no-repeat;
+    background-size: cover;
+    top: 50%;
+    left: 1370px;
+    z-index: 9;
+    animation: moveRight 2s ease-in-out infinite;
+  }
+  .btn-content {
+    width: 489px;
+    position: fixed;
+    bottom: 0;
+    right: 260px;
+    z-index: 9;
+    text-align: center;
+    .clouds,
+    .starts {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .clouds {
+      top: 40px;
+      width: 489px;
+      animation: floatLeft 1.3s ease-in-out infinite alternate;
+    }
+    .starts {
+      top: 20px;
+      width: 477px;
+      animation: floatRight 1.5s ease-in-out infinite alternate;
+    }
+    .btns {
+      position: relative;
+      z-index: 10;
+      cursor: pointer;
+      animation: floatRight 1.2s infinite linear alternate;
+    }
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    left: 1370px;
+    opacity: 0.5;
+  }
+  70% {
+    left: 1430px;
+    opacity: 1;
+  }
+  100% {
+    left: 1430px;
+    opacity: 0.1;
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(15px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes floatLeft {
+  0% {
+    left: -10px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes floatRight {
+  0% {
+    left: 10px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.redallow0,
+.redallow1,
+.redallow2 {
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  background: url(https://img.csgo.com.cn/csgo/64/38/643879f214ce94970a711c79fc835c1f1607666169.png)
+    no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+.redallow0 {
+  top: 255px;
+  left: 486px;
+}
+.redallow1 {
+  bottom: 68px;
+  left: 798px;
+}
+.redallow2 {
+  top: 255px;
+  right: 276px;
+}
+
+// logo
+.dota2-logo,
+.csgo-logo,
+.pvp-logo,
+.app-logo {
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  top: 100px;
+  left: 278px;
+  z-index: 9;
+}
+.csgo-logo {
+  left: 460px;
+  width: 80px;
+}
+.pvp-logo {
+  left: 1108px;
+  width: 112px;
+}
+.app-logo {
+  left: 1236px;
+  width: 140px;
+}

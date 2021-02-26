@@ -1,0 +1,113 @@
+.recomment-config {
+  height: 100%;
+  position: relative;
+  .gifTop {
+    width: 925px;
+    position: absolute;
+    top: -129px;
+    right: -435px;
+  }
+  .title {
+    width: 341px;
+    margin: 60px 0 0 76px;
+  }
+  .content {
+    width: 539px;
+    height: 513px;
+    margin: 20px 0 0 155px;
+    background: url(https://img.csgo.com.cn/csgo/87/09/8709bf02d841a2b6f2ed727257597f061607424537.png)
+      no-repeat 0 50px;
+    background-size: 100%;
+    position: relative;
+    ul {
+      position: relative;
+      li {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        img {
+          width: 530px;
+          height: 314px;
+          cursor: pointer;
+        }
+      }
+    }
+    .pre,
+    .next {
+      width: 25px;
+      height: 39px;
+      position: absolute;
+      border: none;
+      cursor: pointer;
+      // &.disable {
+      //   opacity: 0.3;
+      // }
+    }
+    .pre {
+      left: -70px;
+      top: 50%;
+      background: url(https://img.csgo.com.cn/csgo/eb/47/eb4778fd61184f9f302d8e430461aa6d1607767825.png)
+        no-repeat;
+      background-size: cover;
+    }
+    .next {
+      right: -70px;
+      top: 50%;
+      background: url(https://img.csgo.com.cn/csgo/4d/17/4d17c7facc2022613e19481122721d441607767867.png)
+        no-repeat;
+      background-size: cover;
+    }
+  }
+}
+
+.dialog-con {
+  color: #fff;
+  .dtitle {
+    position: absolute;
+    top: 70px;
+    left: 53px;
+    width: 270px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .intro {
+    position: absolute;
+    top: 116px;
+    left: 53px;
+    width: 377px;
+    text-align: left;
+    font-size: 18px;
+    word-break: break-all;
+  }
+  .dimg {
+    position: absolute;
+    top: 68px;
+    right: 41px;
+    width: 529px;
+    height: 311px;
+  }
+}
+
+.pointer {
+  width: 51px;
+  height: 51px;
+  position: absolute;
+  left: 364px;
+  top: 330px;
+  animation: moveToTop 1.2s ease-in-out infinite;
+  z-index: 99;
+}
+
+@keyframes moveToTop {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-25px, -25px);
+    opacity: 1;
+  }
+}

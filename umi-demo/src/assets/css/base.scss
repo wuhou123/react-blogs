@@ -1,0 +1,801 @@
+$reset: false !default;
+@if $reset {
+  body,
+  div,
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  pre,
+  code,
+  form,
+  fieldset,
+  legend,
+  input,
+  textarea,
+  p,
+  blockquote,
+  th,
+  td,
+  header,
+  hgroup,
+  nav,
+  section,
+  article,
+  aside,
+  footer,
+  figure,
+  figcaption,
+  menu,
+  button {
+    margin: 0;
+    padding: 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 100%;
+    font-weight: bold;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  caption,
+  th {
+    text-align: left;
+  }
+  fieldset,
+  img {
+    border: 0;
+  }
+  li {
+    list-style: none;
+  }
+  em,
+  i {
+    font-style: normal;
+  }
+  body {
+    color: #000;
+    font-size: 14px;
+    line-height: 1.5;
+    position: relative;
+  }
+  input,
+  button,
+  textarea,
+  select,
+  optgroup,
+  option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    border-radius: 0;
+    //-webkit-appearance: none; //慎用,去除系统默认appearance的样式,常用于IOS下移除原生样式
+  }
+  a {
+    -webkit-touch-callout: none; //禁止长按链接与图片弹出菜单
+    text-decoration: none;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    word-wrap: break-word;
+    word-break: break-word;
+    -webkit-text-size-adjust: 100%;
+  }
+  *:focus {
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+$img_url: '../images' !default;
+$abs_url: '/static/images' !default;
+
+@mixin image($url, $repeat: top center no-repeat) {
+  background: url(unquote($img_url + '/' + $url)) $repeat;
+}
+@mixin img($url, $repeat: top center no-repeat) {
+  background: url(unquote($abs_url + '/' + $url)) $repeat;
+}
+
+@mixin placeholder($color) {
+  ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: $color;
+  }
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $color;
+  }
+  :-ms-input-placeholder {
+    /* IE 10+ */
+    color: $color;
+  }
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: $color;
+  }
+}
+
+$pre: ms moz webkit !default;
+@mixin prefixs($map, $vendors: $pre) {
+  @each $prop, $value in $map {
+    @if $vendors {
+      @each $vendor in $vendors {
+        #{"-" + $vendor + "-" + $prop}: #{$value};
+      }
+    }
+    #{$prop}: #{$value};
+  }
+}
+
+@mixin size($width, $height: $width, $lineHeight: 0px) {
+  width: $width;
+  height: $height;
+  @if $lineHeight != 0px {
+    line-height: $lineHeight;
+  }
+}
+
+//use: @include position(absolute,top 5 right 6);
+@mixin position($position, $args) {
+  $offsets: top right bottom left z-index;
+  position: $position;
+  @each $o in $offsets {
+    $i: index($args, $o);
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number
+    {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+}
+@mixin absolute($args) {
+  @include position(absolute, $args);
+}
+@mixin fixed($args) {
+  @include position(fixed, $args);
+}
+@mixin relative($args) {
+  @include position(relative, $args);
+}
+@mixin center() {
+  @include absolute(left 50% top 50%);
+  transform: translate(-50%, -50%);
+}
+@mixin opacity($color, $trans) {
+  background: $color;
+  filter: alpha(opacity=$trans * 100);
+  opacity: $trans;
+}
+
+@mixin filter($color, $trans) {
+  $rgba: rgba($color, $trans);
+  background: $rgba;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="#{ie-hex-str($rgba)}", EndColorStr="#{ie-hex-str($rgba)}");
+  :root & {
+    filter: none;
+  }
+}
+
+//====================================================
+//
+//  set html font-size
+//
+//====================================================
+$set-html-font-size: false !default; // 是否开启设置html字体
+$baseSize: 64px !default;
+$setMediaWidth: 750 !default; // 设置适配宽度
+$mediaArrays: (
+  320 360 375 400 414 480 540 640 720 750 800 840 960 1000 1200 1360
+) !default;
+@if $set-html-font-size {
+  $htmlSize: null;
+  @if length($mediaArrays) ==1 and type-of($mediaArrays) !=string {
+    $htmlSize: $baseSize / ($setMediaWidth / nth($mediaArrays, 1));
+    @media only screen and (min-width: #{nth($mediaArrays, 1)}px) {
+      html {
+        font-size: #{$htmlSize}px;
+      }
+    }
+  }
+  @if length($mediaArrays) >1 {
+    @for $i from 1 through length($mediaArrays) {
+      $htmlSize: $baseSize / ($setMediaWidth / nth($mediaArrays, $i));
+      $media: null;
+      @if $i==1 {
+        $media: 'only screen and (max-width: #{nth($mediaArrays, $i + 1) - 1}px)';
+      } @else if $i==length($mediaArrays) {
+        $media: 'only screen and (min-width: #{nth($mediaArrays, $i)}px)';
+      } @else {
+        $media: 'only screen and (min-width: #{nth($mediaArrays, $i)}px) and (max-width: #{nth($mediaArrays, $i + 1) - 1}px)';
+      }
+      @media #{$media} {
+        html {
+          font-size: #{$htmlSize};
+        }
+      }
+    }
+  }
+}
+
+//====================================================
+//
+//  px to rem
+//
+//====================================================
+// This is the default html and body font-size for the base rem value.
+
+$rem-base: 32 !default;
+$rem-digits: 2 !default;
+
+// IMPORT ONCE
+// We use this to prevent styles from being loaded multiple times for compenents that rely on other components.
+$modules: () !default;
+@mixin exports($name) {
+  @if (index($modules, $name) == false) {
+    $modules: append($modules, $name);
+    @content;
+  }
+}
+
+//
+// @functions
+//
+
+@function pow($x, $n) {
+  $ret: 1;
+
+  @if $n >= 0 {
+    @for $i from 1 through $n {
+      $ret: $ret * $x;
+    }
+  } @else {
+    @for $i from $n to 0 {
+      $ret: $ret / $x;
+    }
+  }
+
+  @return $ret;
+}
+
+@function to-fixed($float, $digits: 2) {
+  $sass-precision: 5;
+
+  @if $digits > $sass-precision {
+    @warn "Sass sets default precision to #{$sass-precision} digits, and there is no way to change that for now."
+    + "The returned number will have #{$sass-precision} digits, even if you asked for `#{$digits}`."
+    + "See https://github.com/sass/sass/issues/1122 for further informations.";
+  }
+
+  $pow: pow(10, $digits);
+  @return round($float * $pow) / $pow;
+}
+
+@function toFixed($args...) {
+  @return to-fixed($args...);
+}
+
+// RANGES
+// We use these functions to define ranges for various things, like media queries.
+@function lower-bound($range) {
+  @if length($range) <= 0 {
+    @return 0;
+  }
+  @return nth($range, 1);
+}
+
+@function upper-bound($range) {
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
+  @return nth($range, 2);
+}
+
+// STRIP UNIT
+// It strips the unit of measure and returns it
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// CONVERT TO REM
+@function convert-to-rem($value, $base-digits: $rem-digits) {
+  $value: strip-unit($value) / strip-unit($rem-base) * 1rem;
+  @if ($value == 0rem) {
+    $value: 0;
+  } // Turn 0rem into 0
+  @return toFixed($value, $base-digits);
+}
+
+@function data($attr) {
+  @if $namespace {
+    @return '[data-' + $namespace + '-' + $attr + ']';
+  }
+
+  @return '[data-' + $attr + ']';
+}
+
+// REM CALC
+
+// New Syntax, allows to optionally calculate on a different base value to counter compounding effect of rem's.
+// Call with 1, 2, 3 or 4 parameters, 'px' is not required but supported:
+//
+//   rem-calc(10 20 30px 40);
+//
+// Space delimited, if you want to delimit using comma's, wrap it in another pair of brackets
+//
+//   rem-calc((10, 20, 30, 40px));
+//
+// Optionally call with a different base (eg: 8px) to calculate rem.
+//
+//   rem-calc(16px 32px 48px, 8px);
+//
+// If you require to comma separate your list
+//
+//   rem-calc((16px, 32px, 48), 8px);
+
+@function rem-calc($values, $base-digits: $rem-digits) {
+  $max: length($values);
+
+  @if $max == 1 {
+    @return convert-to-rem(nth($values, 1), $base-digits);
+  }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append(
+      $remValues,
+      convert-to-rem(nth($values, $i), $base-digits)
+    );
+  }
+  @return $remValues;
+}
+
+// OLD EM CALC
+// Deprecated: We'll drop support for this in 5.1.0, use rem-calc()
+@function emCalc($values) {
+  @return rem-calc($values);
+}
+
+// OLD EM CALC
+// Deprecated: We'll drop support for this in 5.1.0, use rem-calc()
+@function em-calc($values) {
+  @return rem-calc($values);
+}
+
+// eg....
+@function rc($values...) {
+  @return rem-calc($values...);
+}
+
+%fl {
+  float: left;
+}
+
+%fr {
+  float: right;
+}
+
+%fn {
+  float: none;
+}
+
+%cf {
+  *zoom: 1;
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+%dn {
+  display: none;
+}
+
+%db {
+  display: block;
+}
+
+%dib {
+  display: inline-block;
+  *zoom: 1;
+  *display: inline;
+}
+
+%tl {
+  text-align: left;
+}
+
+%tr {
+  text-align: right;
+}
+
+%tc {
+  text-align: center;
+}
+
+%ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+%border-box {
+  -moz-box-sizing: border-box;
+  -webkt-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+%arrow {
+  width: 0;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+  overflow: hidden;
+  display: inline-block;
+}
+
+%relative {
+  position: relative;
+}
+
+%absolute {
+  position: absolute;
+}
+
+%ovh {
+  overflow: hidden;
+}
+
+%flexbox {
+  display: -webkit-box; // OLD - iOS 6-, Safari 3.1-6
+  display: -moz-box; // OLD - Firefox 19- (buggy but mostly works)
+  display: -ms-flexbox; // TWEENER - IE 10
+  display: -webkit-flex; // NEW - Chrome
+  display: flex;
+}
+
+%select {
+  -ms-user-select: text;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+// family.scss
+
+/// Select all children from the first to `$num`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin first($num) {
+  @if $num == 1 {
+    &:first-child {
+      @content;
+    }
+  } @else {
+    &:nth-child(-n + #{$num}) {
+      @content;
+    }
+  }
+}
+
+/// Select all children from the last to `$num`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin last($num) {
+  &:nth-last-child(-n + #{$num}) {
+    @content;
+  }
+}
+
+/// Select all children after the first to `$num`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin after-first($num) {
+  &:nth-child(n + #{$num + 1}) {
+    @content;
+  }
+}
+
+/// Select all children before `$num` from the last.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin from-end($num) {
+  &:nth-last-child(#{$num}) {
+    @content;
+  }
+}
+
+/// Select all children between `$first` and `$last`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin between($first, $last) {
+  &:nth-child(n + #{$first}):nth-child(-n + #{$last}) {
+    @content;
+  }
+}
+
+/// Select all even children between `$first` and `$last`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin even-between($first, $last) {
+  &:nth-child(even):nth-child(n + #{$first}):nth-child(-n + #{$last}) {
+    @content;
+  }
+}
+
+/// Select all odd children between `$first` and `$last`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin odd-between($first, $last) {
+  &:nth-child(odd):nth-child(n + #{$first}):nth-child(-n + #{$last}) {
+    @content;
+  }
+}
+
+/// Select all `$num` children between `$first` and `$last`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin n-between($num, $first, $last) {
+  &:nth-child(#{$num}n):nth-child(n + #{$first}):nth-child(-n + #{$last}) {
+    @content;
+  }
+}
+
+/// Select all children but `$num`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin all-but($num) {
+  &:not(:nth-child(#{$num})) {
+    @content;
+  }
+}
+
+/// Select children each `$num`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+/// @alias every
+@mixin each($num) {
+  &:nth-child(#{$num}n) {
+    @content;
+  }
+}
+
+/// Select children each `$num`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin every($num) {
+  &:nth-child(#{$num}n) {
+    @content;
+  }
+}
+
+/// Select the `$num` child from the start and the `$num` child from the last.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin from-first-last($num) {
+  &:nth-child(#{$num}),
+  &:nth-last-child(#{$num}) {
+    @content;
+  }
+}
+
+/// Select the item in the middle of `$num` child. Only works with odd number
+/// chain.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin middle($num) {
+  &:nth-child(#{round($num / 2)}) {
+    @content;
+  }
+}
+
+/// Select all children between the `$num` first and the `$num` last.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+@mixin all-but-first-last($num) {
+  &:nth-child(n + #{$num}):nth-last-child(n + #{$num}) {
+    @content;
+  }
+}
+
+/// This quantity-query mixin will only select the first of `$limit` items. It will not
+/// work if there is not as much as item as you set in `$limit`.
+/// @group Quantity queries
+/// @param {number} $limit
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin first-of($limit) {
+  &:nth-last-child(#{$limit}):first-child {
+    @content;
+  }
+}
+
+/// This quantity-query mixin will only select the last of `$limit` items. It will not
+/// if there is not as much as item as you set in `$limit`.
+/// @group Quantity queries
+/// @param {number} $limit
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin last-of($limit) {
+  &:nth-of-type(#{$limit}):nth-last-of-type(1) {
+    @content;
+  }
+}
+
+/// This quantity-query mixin will select every items if there is at least `$num` items. It will not
+/// if there is not as much as item as you set in `$num`.
+/// @group Quantity queries
+/// @param {number} $limit
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin at-least($num) {
+  $selector: &;
+  $child: nth(nth($selector, -1), -1);
+
+  &:nth-last-child(n + #{$num}),
+  &:nth-last-child(n + #{$num}) ~ #{$child} {
+    @content;
+  }
+}
+
+/// This quantity-query mixin will select every items if there is at most `$num` items. It will not
+/// if there is not as much as item as you set in `$num`.
+/// @group Quantity queries
+/// @param {number} $limit
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin at-most($num) {
+  $selector: &;
+  $child: nth(nth($selector, -1), -1);
+
+  &:nth-last-child(-n + #{$num}):first-child,
+  &:nth-last-child(-n + #{$num}):first-child ~ #{$child} {
+    @content;
+  }
+}
+
+/// This quantity-query mixin will select every items only if there is between `$min` and `$max` items.
+/// @group Quantity queries
+/// @param {number} $limit
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin in-between($min, $max) {
+  $selector: &;
+  $child: nth(nth($selector, -1), -1);
+
+  &:nth-last-child(n + #{$min}):nth-last-child(-n + #{$max}):first-child,
+  &:nth-last-child(n + #{$min}):nth-last-child(-n + #{$max}):first-child
+    ~ #{$child} {
+    @content;
+  }
+}
+
+/// Select the first exact child
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin first-child() {
+  &:first-of-type {
+    @content;
+  }
+}
+
+/// Select the last exact child
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin last-child() {
+  &:last-of-type {
+    @content;
+  }
+}
+
+/// Select all even children.
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin even() {
+  &:nth-child(even) {
+    @content;
+  }
+}
+
+/// Select all odd children.
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin odd() {
+  &:nth-child(odd) {
+    @content;
+  }
+}
+
+/// Select only the first and last child.
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin first-last() {
+  &:first-child,
+  &:last-child {
+    @content;
+  }
+}
+
+/// Will only select the child if it’s unique.
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @alias only
+@mixin unique() {
+  &:only-child {
+    @content;
+  }
+}
+
+/// Will only select the child if it’s unique.
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin only() {
+  &:only-child {
+    @content;
+  }
+}
+
+/// Will only select children if they are not unique. Meaning if there is at
+/// least 2 children, the style is applied.
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+@mixin not-unique() {
+  &:not(:only-child) {
+    @content;
+  }
+}
+
+/// This mixin is used to automatically sort z-index in numerical order. But it
+/// can also sort them in anti-numerical order, depending the parameters you use.
+/// @group using functions
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - Number of children
+/// @param {string} $direction [forward] - Direction of the sort
+/// @param {number} $index [0] - Index of the sorting
+@mixin child-index($num, $direction: 'forward', $index: 0) {
+  @for $i from 1 through $num {
+    @if ($direction == 'forward') {
+      &:nth-child(#{$i}) {
+        z-index: order-index($i, $index);
+        @content;
+      }
+    } @else if ($direction == 'backward') {
+      &:nth-last-child(#{$i}) {
+        z-index: order-index($i, $index);
+        @content;
+      }
+    }
+  }
+}
+
+/// Used by the child-index mixin. It will returned the proper sorted numbers
+/// depending on the `$index` value.
+/// @access private
+/// @param {number} $num - Number of children
+/// @param {number} $index - Index of the sorting
+@function order-index($i, $index) {
+  @return ($index + $i);
+}
